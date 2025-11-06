@@ -417,6 +417,10 @@ function splitBlockAndAddNextOneIfOverlaps() {
   const overlapPercent = Math.max(0, Math.round((overlap / size) * 100));
   showOverlapPopup(overlapPercent);
 
+  const overlapPercent = Math.max(0,Math.round((overlap / size) * 100));
+  showOverlapPopup(overlapPercent);
+
+
   if (overlap > 0) {
     cutBox(top, overlap, size, delta);
     const shift = (overlap / 2 + overhangSize / 2) * Math.sign(delta);
@@ -457,6 +461,11 @@ function showOverlapPopup(percent) {
     popup.style.background = "rgba(255, 165, 0, 0.8)"; 
   } else {
     popup.style.background = "rgba(178, 34, 34, 0.8)"; 
+    popup.style.background = "rgba(0, 128, 0, 0.8)"; // green
+  } else if (percent >= 60) {
+    popup.style.background = "rgba(255, 165, 0, 0.8)"; // orange
+  } else {
+    popup.style.background = "rgba(178, 34, 34, 0.8)"; // red
   }
 
   popup.classList.add("show");
@@ -465,6 +474,8 @@ function showOverlapPopup(percent) {
     popup.classList.remove("show");
   }, 1000);
 }
+
+
 
 // Function to handle game over scenario
 function missedTheSpot() {
